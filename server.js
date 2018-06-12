@@ -1,20 +1,25 @@
 var express = require("express");
-var exphbs = require("express-handlebars");
 var bodyParser = require("body-parser");
+var logger = require("morgan");
+var mongoose = require("mongoose");
+var axios = require("axios");
+var cheerio = require("cheerio");
 
-var app = express();
+var db = require("./models");
+
 var PORT = 3000;
 
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+var app = express();
 
-app.engine("handlebars", exphbs({ defaultLayout: "main" }));
-app.set("view engine", "handlebars");
-
+app.use(logger("dev"));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
+
+mongoose.connect("mongodb://localhost/week18Populater");
+
 require("./routes/apiRoutes")(app);
 require("./routes/viewRoutes")(app);
 
-app.listen(PORT, function() {
-    console.log("App listening on PORT " + PORT);
-});
+app.listen(PORT, function () {
+    console.log("App running on port " + PORT + "!");
+  });
