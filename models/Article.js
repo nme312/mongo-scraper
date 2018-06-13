@@ -6,18 +6,14 @@ var ArticleSchema = new Schema({
         type: String,
         required: true
     },
-    summary: {
-        type: String,
-        required: true
-    },
-    url: {
-        type: String,
-        required: true
-    },
-    note: {
+    byLine: {
         type: Schema.Types.ObjectId,
-        ref: "Note"
-    }
+        ref: "byLine"
+    },
+    summary: {
+        type: Schema.Types.ObjectId,
+        ref: "summary"
+    },
 });
 
 var Article = mongoose.model("Article", ArticleSchema);
