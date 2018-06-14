@@ -35,14 +35,4 @@ module.exports = app => {
         });
         res.send("scrape complete");
     });
-
-    app.get("/api/get", (req, res) => {
-        db.mongoScraper.find({})
-            .then(function (dbMongoScraper) {
-                res.json(dbMongoScraper);
-            })
-            .catch(function (err) {
-                res.json(err);
-            });
-    });
 }
