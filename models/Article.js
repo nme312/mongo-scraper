@@ -2,18 +2,22 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var ArticleSchema = new Schema({
-    headline: {
+    title: {
         type: String,
         required: true
     },
     byLine: {
-        type: Schema.Types.ObjectId,
-        ref: "byLine"
+        type: String,
+        required: true
     },
     summary: {
-        type: Schema.Types.ObjectId,
-        ref: "summary"
+        type: String,
+        required: true
     },
+    note: {
+        type: Schema.Types.ObjectId,
+        ref:"Note"
+    }
 });
 
 var Article = mongoose.model("Article", ArticleSchema);
