@@ -4,23 +4,13 @@ module.exports = function (app) {
     app.get("/home", function (req, res) {
         function findAll() {
             db.Article.find({})
-            .then(function (dbArticle) {
-                var hbObj = { dbArticle };
-                return hbObj;
-            });
+                .then(function (dbArticle) {
+                    var articles = { dbArticle };
+                    return articles;
+                });
         }
-        res.render("/home", findAll());
-    });
-
-    app.get("/new", function (req, res) {
-        db.Article.find({})
-            .then(function (dbArticle) {
-                res.json(dbArticle);
-            })
-            .catch(function (err) {
-                res.json(err);
-            });
-
+        var obj = findAll();
+        res.render("home", findAll());
     });
 
     app.get("/saved", function (req, res) {
