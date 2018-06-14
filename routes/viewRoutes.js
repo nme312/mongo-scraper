@@ -2,15 +2,12 @@ var db = require("../models");
 
 module.exports = function (app) {
     app.get("/home", function (req, res) {
-        function findAll() {
+        var obj = {};
             db.Article.find({})
                 .then(function (dbArticle) {
-                    var articles = { dbArticle };
-                    return articles;
+                    console.log(dbArticle);
+                    res.render("home", {article: dbArticle});
                 });
-        }
-        var obj = findAll();
-        res.render("home", findAll());
     });
 
     app.get("/saved", function (req, res) {
