@@ -9,7 +9,6 @@ module.exports = app => {
             var $ = cheerio.load(response.data);
             $(".theme-summary").each(function (i, element) {
                 var result = {};
-
                 result.title = $(this)
                     .children("h2")
                     .children("a")
@@ -19,7 +18,6 @@ module.exports = app => {
                     .text();
                 result.summary = $(this)
                     .children(".summary")
-
                     .text();
                 if (result.title && result.byLine && result.summary) {
                     console.log(result);
@@ -35,4 +33,8 @@ module.exports = app => {
         });
         res.send("scrape complete");
     });
+
+    app.get("/api/article/:id", (req, res) => {
+        
+    })
 }

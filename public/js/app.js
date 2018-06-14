@@ -1,9 +1,26 @@
 $(document).ready(function () {
 
-var saveBtn = $(".save-button");
+    var scrapeBtn = $(".scrape-button");
 
-saveBtn.on("click", function(event){
-    console.log("click me again i dare you");
-});
+    var saveBtn = $(".save-button");
+    var noteBtn = $(".note-button");
+
+    scrapeBtn.on("click", function() {
+        $.ajax({
+            method: "GET",
+            url: "/api/scrape"
+        }).then(function(){
+            location.reload();
+            console.log("scrape complete");
+        })
+    });
+
+    saveBtn.on("click", function () {
+        console.log("click me again i dare you");
+    });
+
+    noteBtn.on("click", function () {
+        console.log("go back to clicking him");
+    });
 
 });
