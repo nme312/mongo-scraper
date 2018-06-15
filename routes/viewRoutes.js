@@ -10,7 +10,10 @@ module.exports = function (app) {
     });
 
     app.get("/saved", function (req, res) {
-        var obj = {};
-        res.render("savedArticles", obj);
+        db.Article.find({ saved: true })
+            .then(function (dbArticle) {
+                console.log(dbArticle);
+                res.render("savedArticles", { article: dbArticle.reverse() });
+            });
     });
 }

@@ -12,11 +12,12 @@ $(document).ready(function () {
         }).then(function(){
             location.reload();
             console.log("scrape complete");
-        })
+        });
     });
 
     saveBtn.on("click", function () {
         console.log("click me again i dare you");
+        
     });
 
     noteBtn.on("click", function () {
